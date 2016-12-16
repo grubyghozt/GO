@@ -16,7 +16,7 @@ public class GUI extends JFrame{
     /**
      * zmienna przechowująca w jakim stanie znajduje się GUI
      */
-    private State state;
+    public State state;
     /**
      * zmienna przehowująca rozmiar planszy
      */

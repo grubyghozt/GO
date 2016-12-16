@@ -10,8 +10,8 @@ import java.io.Serializable;
  * Akcja odopowiedzialna za utworzenie planszy o podanym rozmiarze
  */
 public class ChooseSize implements Command, Serializable {
-    private Short size;
-    public ChooseSize(Short size){
+    private int size;
+    public ChooseSize(int size){
         this.size=size;
     }
     @Override

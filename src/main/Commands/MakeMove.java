@@ -1,6 +1,8 @@
 package main.Commands;
 
 import main.Player;
+import main.States.NormalGameState;
+import main.States.WaitingForOpponentState;
 
 import java.io.Serializable;
 
@@ -10,12 +12,17 @@ import java.io.Serializable;
 public class MakeMove implements Command, Serializable {
     private int x;
     private int y;
-    MakeMove(int x, int y){
+    public MakeMove(int x, int y){
         this.x=x;
         this.y=y;
     }
     @Override
     public void Execute(Player player) {
-
+        if(player.CurrentGame.LocalModel.MakeValidMove(x, y, player.color)){
+            player.update(player.CurrentGame.LocalModel.GetBoard());
+            player.opponent.update(player.CurrentGame.LocalModel.GetBoard());
+            player.update(new WaitingForOpponentState());
+            player.opponent.update(new NormalGameState());
+        }
     }
 }

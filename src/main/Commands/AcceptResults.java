@@ -1,5 +1,8 @@
 package main.Commands;
 
+import main.Player;
+import main.States.MakeOrJoinGameState;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +10,8 @@ import java.io.Serializable;
  */
 public class AcceptResults implements Command, Serializable {
     @Override
-    public void Execute() {
-
+    public void Execute(Player player) {
+        player.update(new MakeOrJoinGameState());
+        player.opponent.update(new MakeOrJoinGameState());
     }
 }

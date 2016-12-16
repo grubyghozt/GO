@@ -7,7 +7,6 @@ import main.States.State;
  */
 public class BOT extends Player {
     private State state;
-    private color Turn;
     private Stone[][] Board;
     /**
      * Funkcja wykonująca losowe ruchy

@@ -1,6 +1,6 @@
 package main;
 
 /**
- * Klasa reprezentująca kamienie na planszy
+ * Klasa reprezentująca pole na planszy
  */
-public enum Stone {Black, White}
+public enum Stone {Black, White, BlackDead, WhiteDead, Empty, WhiteTerritory, BlackTerritory}

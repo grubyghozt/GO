@@ -2,7 +2,9 @@ package main.Commands;
 
 import main.BOT;
 import main.Player;
+import main.States.NormalGameState;
 import main.States.OpponentFoundState;
+import main.States.WaitingForOpponentState;
 import main.color;
 
 import java.io.Serializable;
@@ -29,5 +31,13 @@ public class ChooseBot implements Command, Serializable {
         }
         player.update(new OpponentFoundState(player.color, player.CurrentGame.LocalModel.GetBoard().length));
         player.opponent.update(new OpponentFoundState(player.opponent.color, player.CurrentGame.LocalModel.GetBoard().length));
+        if(player.color == color.Black){
+            player.update(new NormalGameState());
+            player.opponent.update(new WaitingForOpponentState());
+        }
+        else if(player.color == color.White){
+            player.update(new WaitingForOpponentState());
+            player.opponent.update(new NormalGameState());
+        }
     }
 }

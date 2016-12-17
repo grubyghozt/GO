@@ -1,5 +1,8 @@
 package main.States;
 
+import main.Commands.ConfirmYourOpponentChoice;
+import main.Player;
+
 import java.io.Serializable;
 
 /**
@@ -14,5 +17,10 @@ public class AcceptOrRefuseYourOpponentChoiceState implements State, Serializabl
     @Override
     public void EndState() {
 
+    }
+
+    @Override
+    public void BotDo(Player player) {
+        new ConfirmYourOpponentChoice().Execute(player);
     }
 }

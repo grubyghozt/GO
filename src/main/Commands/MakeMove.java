@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class MakeMove implements Command, Serializable {
     private int x;
     private int y;
+    public boolean valid = false;
     public MakeMove(int x, int y){
         this.x=x;
         this.y=y;
@@ -23,6 +24,7 @@ public class MakeMove implements Command, Serializable {
             player.opponent.update(player.CurrentGame.LocalModel.GetBoard());
             player.update(new WaitingForOpponentState());
             player.opponent.update(new NormalGameState());
+            valid = true;
         }
     }
 }

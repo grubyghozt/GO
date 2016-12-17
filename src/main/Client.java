@@ -58,9 +58,7 @@ public class Client {
         });
         MyGui.NewGame.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                SendCommand(new NewGame());
-            }
+            public void actionPerformed(ActionEvent e) { SendCommand(new NewGame()); }
         });
         MyGui.JoinGame.addActionListener(new ActionListener() {
             @Override

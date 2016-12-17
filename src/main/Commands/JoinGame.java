@@ -1,7 +1,9 @@
 package main.Commands;
 
 import main.*;
+import main.States.NormalGameState;
 import main.States.OpponentFoundState;
+import main.States.WaitingForOpponentState;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -31,6 +33,14 @@ public class JoinGame implements Command, Serializable {
                     }
                     game.player1.update(new OpponentFoundState(game.player1.color, game.LocalModel.GetBoard().length));
                     game.player2.update(new OpponentFoundState(game.player2.color, game.LocalModel.GetBoard().length));
+                    if(game.player1.color == color.Black){
+                        game.player1.update(new NormalGameState());
+                        game.player2.update(new WaitingForOpponentState());
+                    }
+                    else if(game.player1.color == color.White){
+                        game.player1.update(new WaitingForOpponentState());
+                        game.player2.update(new NormalGameState());
+                    }
                     return;
                 }
             }

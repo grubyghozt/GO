@@ -15,8 +15,8 @@ public class HumanPlayer extends Player implements Runnable{
     private Socket socket;
     //public Game CurrentGame;
     //public Player opponent;
-    //ObjectInputStream in;
-    //ObjectOutputStream out;
+    ObjectInputStream in;
+    ObjectOutputStream out;
     /**
      * konstruktor
      */

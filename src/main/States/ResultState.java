@@ -1,5 +1,7 @@
 package main.States;
 
+import main.Player;
+
 import java.io.Serializable;
 
 /**
@@ -17,6 +19,11 @@ public class ResultState implements State, Serializable {
 
     @Override
     public void EndState() {
+
+    }
+
+    @Override
+    public void BotDo(Player player) {
 
     }
 }

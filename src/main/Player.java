@@ -13,12 +13,12 @@ public abstract class Player {
     public color color;
     public Game CurrentGame;
     public Player opponent;
-    ObjectInputStream in;
-    ObjectOutputStream out;
+    //ObjectInputStream in;
+    //ObjectOutputStream out;
     /**
      * Funkcja wykonująca komendę
      */
-    private void ExecuteCommand(Command command){}
+    //private void ExecuteCommand(Command command){}
     /**
      * Funkcja przesyłająca wynik
      */

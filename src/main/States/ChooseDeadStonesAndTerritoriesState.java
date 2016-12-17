@@ -1,5 +1,8 @@
 package main.States;
 
+import main.Commands.ConfirmYourChoice;
+import main.Player;
+
 import java.io.Serializable;
 
 /**
@@ -14,5 +17,10 @@ public class ChooseDeadStonesAndTerritoriesState implements State, Serializable 
     @Override
     public void EndState() {
 
+    }
+
+    @Override
+    public void BotDo(Player player) {
+        new ConfirmYourChoice().Execute(player);
     }
 }

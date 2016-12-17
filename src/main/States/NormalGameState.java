@@ -1,9 +1,13 @@
 package main.States;
 
+import main.Commands.MakeMove;
+import main.Commands.Pass;
+import main.Player;
+
 import java.io.Serializable;
 
 /**
- * Stan GUI podczas rozgrywki gdy gracze kładą kolejne kamienie (inne akcje jak pasowanie, ustalanie martwych kamieni zmieniają stan GUI)
+ * Stan GUI podczas początku ruchu gracza (użycie akcji jak pasowanie, ustalanie martwych kamieni zmienia stan GUI)
  */
 public class NormalGameState implements State, Serializable {
     @Override
@@ -14,5 +18,19 @@ public class NormalGameState implements State, Serializable {
     @Override
     public void EndState() {
 
+    }
+
+    @Override
+    public void BotDo(Player player) {
+        for(int i = 0; i < player.CurrentGame.LocalModel.GetBoard().length; i++){
+            for(int j = 0; j < player.CurrentGame.LocalModel.GetBoard().length; j++){
+                MakeMove temp = new MakeMove(i, j);
+                temp.Execute(player);
+                if(temp.valid){
+                    return;
+                }
+            }
+        }
+        new Pass().Execute(player);
     }
 }

@@ -48,15 +48,24 @@ public class HumanPlayer extends Player implements Runnable{
     }
     @Override
     public void run(){
-        while (true){
+
             try{
-                Command newCommand = (Command) in.readObject();
-                ExecuteCommand(newCommand);
-                //CurrentGame.player1.update(CurrentGame.player1.color);
-                //CurrentGame.player2.update(CurrentGame.player2.color);
+                while (true) {
+                    Command newCommand = (Command) in.readObject();
+                    ExecuteCommand(newCommand);
+                    //CurrentGame.player1.update(CurrentGame.player1.color);
+                    //CurrentGame.player2.update(CurrentGame.player2.color);
+                }
             }
             catch(ClassNotFoundException e){System.out.println("blad w watku uruchamiajacym komendy - Class");}
             catch(IOException e){System.out.print("blad w watku uruchamiajacym komendy - IO");}
+            finally{
+                try{
+                    socket.close();
+                    in.close();
+                    out.close();
+                }
+                catch(Exception e){}
             }
     }
 }

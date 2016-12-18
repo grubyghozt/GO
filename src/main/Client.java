@@ -157,19 +157,26 @@ public class Client {
      * Funkcja zmieniająca GUI na podstawie komendy gracza
      */
     private void update(){
-        while(true){
             try{
-                Object obj = (Object) in.readObject();
-                if(obj instanceof State){
-                    MyGui.SetState((State) obj);
-                }
-                else if(obj instanceof Stone[][]){
-                    MyGui.Repaint((Stone[][]) obj);
+                while(true) {
+                    Object obj = (Object) in.readObject();
+                    if (obj instanceof State) {
+                        MyGui.SetState((State) obj);
+                    } else if (obj instanceof Stone[][]) {
+                        MyGui.Repaint((Stone[][]) obj);
+                    }
                 }
             }
             catch(IOException e){System.out.println("blad w kliencie - IO");}
             catch(ClassNotFoundException e){System.out.println("blad w kliencie - Class");}
-        }
+            finally{
+                try{
+                    socket.close();
+                    in.close();
+                    out.close();
+                }
+                catch(Exception e){}
+            }
     }
     public static void main(String[] args){
         Client newClient = new Client("localhost");

@@ -18,7 +18,7 @@ public class Server {
                 new Thread(newPlayer).start();
             }
         }
-        catch (Exception e){System.out.println("cos sie popsulo");}
+        catch (Exception e){System.out.println("blad w serverze");}
     }
 
 }

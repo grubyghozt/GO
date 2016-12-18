@@ -1,5 +1,6 @@
 package main.States;
 
+import main.GUI;
 import main.Player;
 
 import java.io.Serializable;
@@ -13,13 +14,17 @@ public class ResultState implements State, Serializable {
         this.Result=result;
     }
     @Override
-    public void StartState() {
-
+    public void StartState(GUI gui) {
+        gui.YouPlayAs.setVisible(false);
+        gui.GiveUp.setVisible(false);
+        gui.Board.setVisible(false);
+        gui.AcceptResults.setLabel(Result);
+        gui.AcceptResults.setVisible(true);
     }
 
     @Override
-    public void EndState() {
-
+    public void EndState(GUI gui) {
+        gui.AcceptResults.setVisible(false);
     }
 
     @Override

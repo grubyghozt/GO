@@ -1,5 +1,6 @@
 package main.States;
 
+import main.GUI;
 import main.Player;
 
 import java.io.Serializable;
@@ -9,13 +10,17 @@ import java.io.Serializable;
  */
 public class ChooseBoardSizeState implements State, Serializable {
     @Override
-    public void StartState() {
-
+    public void StartState(GUI gui) {
+        gui.Choose19x19.setVisible(true);
+        gui.Choose13x13.setVisible(true);
+        gui.Choose9x9.setVisible(true);
     }
 
     @Override
-    public void EndState() {
-
+    public void EndState(GUI gui) {
+        gui.Choose19x19.setVisible(false);
+        gui.Choose13x13.setVisible(false);
+        gui.Choose9x9.setVisible(false);
     }
 
     @Override

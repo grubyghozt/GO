@@ -1,5 +1,6 @@
 package main.States;
 
+import main.GUI;
 import main.Player;
 
 import java.io.Serializable;
@@ -9,13 +10,15 @@ import java.io.Serializable;
  */
 public class ChooseOpponentState implements State, Serializable {
     @Override
-    public void StartState() {
-
+    public void StartState(GUI gui) {
+        gui.ChoosePlayer.setVisible(true);
+        gui.ChooseBot.setVisible(true);
     }
 
     @Override
-    public void EndState() {
-
+    public void EndState(GUI gui) {
+        gui.ChoosePlayer.setVisible(false);
+        gui.ChooseBot.setVisible(false);
     }
 
     @Override

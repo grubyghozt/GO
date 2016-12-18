@@ -1,5 +1,6 @@
 package main.States;
 
+import main.GUI;
 import main.Player;
 import main.color;
 
@@ -16,12 +17,17 @@ public class OpponentFoundState implements State, Serializable {
         this.player = player;
     }
     @Override
-    public void StartState() {
-
+    public void StartState(GUI gui) {
+        gui.size=this.size;
+        gui.YouPlayAs.setLabel("You play as " + player);
+        gui.YouPlayAs.setVisible(true);
+        gui.GiveUp.setVisible(true);
+        gui.Board.setSize(size*20-1,size*20-1);
+        gui.Board.setVisible(true);
     }
 
     @Override
-    public void EndState() {
+    public void EndState(GUI gui) {
 
     }
 

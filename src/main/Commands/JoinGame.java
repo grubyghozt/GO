@@ -16,6 +16,7 @@ public class JoinGame implements Command, Serializable {
     private static Random generator = new Random();
     @Override
     public void Execute(Player player) {
+        player.update(new WaitingForOpponentState());
         while(true) {
             for (Game game : Server.ListOfGames) {
                 if (game.freespace) {
@@ -33,6 +34,8 @@ public class JoinGame implements Command, Serializable {
                     }
                     game.player1.update(new OpponentFoundState(game.player1.color, game.LocalModel.GetBoard().length));
                     game.player2.update(new OpponentFoundState(game.player2.color, game.LocalModel.GetBoard().length));
+                    game.player1.update(game.LocalModel.GetBoard());
+                    game.player2.update(game.LocalModel.GetBoard());
                     if(game.player1.color == color.Black){
                         game.player1.update(new NormalGameState());
                         game.player2.update(new WaitingForOpponentState());
@@ -47,7 +50,7 @@ public class JoinGame implements Command, Serializable {
             try {
                 TimeUnit.SECONDS.sleep(1);
             }
-            catch(Exception e){System.out.println("cos sie popsulo");}
+            catch(InterruptedException e){System.out.println("blad w wyszukiwaniu wolnej gry");}
         }
     }
 }

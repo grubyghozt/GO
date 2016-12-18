@@ -2,6 +2,7 @@ package main;
 
 import main.Commands.Command;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -23,10 +24,10 @@ public class HumanPlayer extends Player implements Runnable{
     public HumanPlayer(Socket newsocket){
         this.socket=newsocket;
         try {
-            in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());
+            in = new ObjectInputStream(socket.getInputStream());
         }
-        catch(Exception e){System.out.println("cos sie popsulo");}
+        catch(Exception e){System.out.println("blad w tworzeniu instancji gracza na serverze");}
     }
     /**
      * Funkcja wykonująca komendę
@@ -42,7 +43,7 @@ public class HumanPlayer extends Player implements Runnable{
         try {
             out.writeObject(object);
         }
-        catch(Exception e){System.out.println("cos sie popsulo");}
+        catch(Exception e){System.out.println("blad w przesylaniu wyniku klientowi");}
     }
     @Override
     public void run(){
@@ -53,7 +54,8 @@ public class HumanPlayer extends Player implements Runnable{
                 //CurrentGame.player1.update(CurrentGame.player1.color);
                 //CurrentGame.player2.update(CurrentGame.player2.color);
             }
-            catch(Exception e){System.out.println("cos sie popsulo");}
-        }
+            catch(ClassNotFoundException e){System.out.println("blad w watku uruchamiajacym komendy");}
+            catch(IOException e){                System.out.print("aaaa");}
+            }
     }
 }

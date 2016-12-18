@@ -29,7 +29,9 @@ public class Model {
         //BlackPreviousBoard = new Stone[size][size];
         //WhitePreviousBoard = new Stone[size][size];
         Board = new Stone[size][size];
-        Arrays.fill(Board, Stone.Empty);
+        for (Stone[] row: Board) {
+            Arrays.fill(row, Stone.Empty);
+        }
     }
     /**
      * funkcja szukająca łańcuchów
@@ -132,7 +134,7 @@ public class Model {
                         ChangeChainTo(tempChain, Stone.Empty);
                     }
                 }
-                if((y-1 < Board.length) && (Board[x][y-1] == Stone.White)){
+                if((y-1 >= 0) && (Board[x][y-1] == Stone.White)){
                     Stone[][] tempChain = MakeChain(x, y-1, x, y-1, Stone.White, new Stone[Board.length][Board.length]);
                     if(!CheckChainForProperty(tempChain, Stone.Empty)){
                         blackscore += CountChainElements(tempChain);
@@ -174,7 +176,7 @@ public class Model {
                         ChangeChainTo(tempChain, Stone.Empty);
                     }
                 }
-                if((y-1 < Board.length) && (Board[x][y-1] == Stone.Black)){
+                if((y-1 >= 0) && (Board[x][y-1] == Stone.Black)){
                     Stone[][] tempChain = MakeChain(x, y-1, x, y-1, Stone.Black, new Stone[Board.length][Board.length]);
                     if(!CheckChainForProperty(tempChain, Stone.Empty)){
                         whitescore += CountChainElements(tempChain);

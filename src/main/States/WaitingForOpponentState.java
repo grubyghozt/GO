@@ -1,5 +1,6 @@
 package main.States;
 
+import main.GUI;
 import main.Player;
 
 import java.io.Serializable;
@@ -9,13 +10,13 @@ import java.io.Serializable;
  */
 public class WaitingForOpponentState implements State, Serializable {
     @Override
-    public void StartState() {
-
+    public void StartState(GUI gui) {
+        gui.WaitingForOpponent.setVisible(true);
     }
 
     @Override
-    public void EndState() {
-
+    public void EndState(GUI gui) {
+        gui.WaitingForOpponent.setVisible(false);
     }
 
     @Override

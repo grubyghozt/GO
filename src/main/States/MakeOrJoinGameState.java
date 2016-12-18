@@ -1,5 +1,6 @@
 package main.States;
 
+import main.GUI;
 import main.Player;
 
 import java.io.Serializable;
@@ -9,13 +10,15 @@ import java.io.Serializable;
  */
 public class MakeOrJoinGameState implements State, Serializable {
     @Override
-    public void StartState() {
-
+    public void StartState(GUI gui) {
+        gui.NewGame.setVisible(true);
+        gui.JoinGame.setVisible(true);
     }
 
     @Override
-    public void EndState() {
-
+    public void EndState(GUI gui) {
+        gui.NewGame.setVisible(false);
+        gui.JoinGame.setVisible(false);
     }
 
     @Override

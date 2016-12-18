@@ -32,11 +32,11 @@ public class Client {
     public Client(String ServerAddress){
         try {
             socket = new Socket(ServerAddress, PORT);
-            in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());
+            in = new ObjectInputStream(socket.getInputStream());
             MyGui= new GUI();
         }
-        catch(Exception e){System.out.println("cos sie popsulo");}
+        catch(Exception e){System.out.println("blad w tworzeniu klienta");}
         SetListeners();
     }
     /**
@@ -80,21 +80,15 @@ public class Client {
         });
         MyGui.Choose19x19.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                SendCommand(new ChooseSize(19));
-            }
+            public void actionPerformed(ActionEvent e) { SendCommand(new ChooseSize(19)); }
         });
         MyGui.Choose13x13.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                SendCommand(new ChooseSize(13));
-            }
+            public void actionPerformed(ActionEvent e) { SendCommand(new ChooseSize(13)); }
         });
         MyGui.Choose9x9.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                SendCommand(new ChooseSize(9));
-            }
+            public void actionPerformed(ActionEvent e) { SendCommand(new ChooseSize(9)); }
         });
         MyGui.YouPlayAs.addActionListener(new ActionListener() {
             @Override
@@ -151,7 +145,7 @@ public class Client {
      */
     private void SendCommand(Command command){
         try{out.writeObject(command);}
-        catch(Exception e){System.out.println("cos sie popsulo");}
+        catch(Exception e){System.out.println("blad w kliencie w wysylaniu komendy");}
 
     }
 
@@ -169,7 +163,7 @@ public class Client {
                     MyGui.Repaint((Stone[][]) obj);
                 }
             }
-            catch(Exception e){System.out.println("cos sie popsulo");}
+            catch(Exception e){System.out.println("blad w kliencie");}
         }
     }
     public static void main(String[] args){

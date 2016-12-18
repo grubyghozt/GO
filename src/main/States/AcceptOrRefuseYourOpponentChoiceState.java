@@ -1,6 +1,7 @@
 package main.States;
 
 import main.Commands.ConfirmYourOpponentChoice;
+import main.GUI;
 import main.Player;
 
 import java.io.Serializable;
@@ -10,13 +11,15 @@ import java.io.Serializable;
  */
 public class AcceptOrRefuseYourOpponentChoiceState implements State, Serializable {
     @Override
-    public void StartState() {
-
+    public void StartState(GUI gui) {
+        gui.AcceptDead.setVisible(true);
+        gui.RefuseDead.setVisible(true);
     }
 
     @Override
-    public void EndState() {
-
+    public void EndState(GUI gui) {
+        gui.AcceptDead.setVisible(false);
+        gui.RefuseDead.setVisible(false);
     }
 
     @Override

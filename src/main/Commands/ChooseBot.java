@@ -31,7 +31,9 @@ public class ChooseBot implements Command, Serializable {
         }
         player.update(new OpponentFoundState(player.color, player.CurrentGame.LocalModel.GetBoard().length));
         player.opponent.update(new OpponentFoundState(player.opponent.color, player.CurrentGame.LocalModel.GetBoard().length));
-        if(player.color == color.Black){
+        player.update(player.CurrentGame.LocalModel.GetBoard());
+        player.opponent.update(player.CurrentGame.LocalModel.GetBoard());
+        if(true){
             player.update(new NormalGameState());
             player.opponent.update(new WaitingForOpponentState());
         }

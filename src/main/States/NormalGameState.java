@@ -2,6 +2,7 @@ package main.States;
 
 import main.Commands.MakeMove;
 import main.Commands.Pass;
+import main.GUI;
 import main.Player;
 
 import java.io.Serializable;
@@ -11,13 +12,13 @@ import java.io.Serializable;
  */
 public class NormalGameState implements State, Serializable {
     @Override
-    public void StartState() {
-
+    public void StartState(GUI gui) {
+        gui.Pass.setVisible(true);
     }
 
     @Override
-    public void EndState() {
-
+    public void EndState(GUI gui) {
+        gui.Pass.setVisible(false);
     }
 
     @Override
@@ -25,7 +26,9 @@ public class NormalGameState implements State, Serializable {
         for(int i = 0; i < player.CurrentGame.LocalModel.GetBoard().length; i++){
             for(int j = 0; j < player.CurrentGame.LocalModel.GetBoard().length; j++){
                 MakeMove temp = new MakeMove(i, j);
+                System.out.print("44");
                 temp.Execute(player);
+                System.out.print("55");
                 if(temp.valid){
                     return;
                 }

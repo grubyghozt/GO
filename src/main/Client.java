@@ -6,10 +6,12 @@ import main.States.MakeOrJoinGameState;
 import main.States.NormalGameState;
 import main.States.State;
 
+import javax.imageio.IIOException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -36,7 +38,7 @@ public class Client {
             in = new ObjectInputStream(socket.getInputStream());
             MyGui= new GUI();
         }
-        catch(Exception e){System.out.println("blad w tworzeniu klienta");}
+        catch(IOException e){System.out.println("blad w tworzeniu klienta");}
         SetListeners();
     }
     /**
@@ -49,10 +51,10 @@ public class Client {
                 int x = e.getX();
                 int y = e.getY();
                 if(MyGui.state instanceof NormalGameState){
-                    SendCommand(new MakeMove(x/(MyGui.Board.getWidth()/MyGui.size),y/(MyGui.Board.getHeight()/MyGui.size)));
+                    SendCommand(new MakeMove((int)((double)x/(((double)MyGui.Board.getWidth()/(double)MyGui.size))),((int)((double)y/(((double)MyGui.Board.getHeight()/(double)MyGui.size))))));
                 }
                 else if(MyGui.state instanceof ChooseDeadStonesAndTerritoriesState){
-                    SendCommand(new ChooseDeadAndTerritories(x/(MyGui.Board.getWidth()/MyGui.size),y/(MyGui.Board.getHeight()/MyGui.size)));
+                    SendCommand(new ChooseDeadAndTerritories((int)((double)x/(((double)MyGui.Board.getWidth()/(double)MyGui.size))),((int)((double)y/(((double)MyGui.Board.getHeight()/(double)MyGui.size))))));
                 }
             }
         });
@@ -144,8 +146,11 @@ public class Client {
      * Funkcja wysyłająca komendę do servera
      */
     private void SendCommand(Command command){
-        try{out.writeObject(command);}
-        catch(Exception e){System.out.println("blad w kliencie w wysylaniu komendy");}
+        try{
+            out.reset();
+            out.writeObject(command);
+        }
+        catch(IOException e){System.out.println("blad w kliencie w wysylaniu komendy");}
 
     }
 
@@ -163,7 +168,8 @@ public class Client {
                     MyGui.Repaint((Stone[][]) obj);
                 }
             }
-            catch(Exception e){System.out.println("blad w kliencie");}
+            catch(IOException e){System.out.println("blad w kliencie - IO");}
+            catch(ClassNotFoundException e){System.out.println("blad w kliencie - Class");}
         }
     }
     public static void main(String[] args){

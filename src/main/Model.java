@@ -36,20 +36,22 @@ public class Model {
     /**
      * funkcja szukająca łańcuchów
      */
-    private Stone[][] MakeChain(int x, int y,int oldx, int oldy, Stone stone, Stone[][] chain){
+    private Stone[][] MakeChain(int x, int y,boolean[][] visited, Stone stone, Stone[][] chain){
+        visited[x][y]=true;
         if(Board[x][y]==stone) {
             chain[x][y]=stone;
-            if(x+1 != oldx && x+1 < Board.length) {
-                MakeChain(x + 1, y, x, y, stone, chain);
+            //System.out.println(visited[x+1][y]);
+            if((x+1 < Board.length) && (!visited[x+1][y])) {
+                MakeChain(x + 1, y, visited, stone, chain);
             }
-            if(x-1 != oldx && x-1 >= 0) {
-                MakeChain(x - 1, y, x, y, stone, chain);
+            if((x-1 >= 0) && (!visited[x-1][y])) {
+                MakeChain(x - 1, y, visited, stone, chain);
             }
-            if(y+1 != oldy && y+1 < Board.length) {
-                MakeChain(x, y + 1, x, y, stone, chain);
+            if((y+1 < Board.length) && (!visited[x][y+1])) {
+                MakeChain(x, y + 1, visited, stone, chain);
             }
-            if(y-1 != oldy && y-1 >= 0) {
-                MakeChain(x, y - 1, x, y, stone, chain);
+            if((y-1 >= 0) && (!visited[x][y-1])) {
+                MakeChain(x, y - 1, visited, stone, chain);
             }
         }
         return chain;
@@ -114,34 +116,34 @@ public class Model {
             else{
                 Board[x][y]=Stone.Black;
                 if((x+1 < Board.length) && (Board[x+1][y] == Stone.White)){
-                    Stone[][] tempChain = MakeChain(x+1, y, x+1, y, Stone.White, new Stone[Board.length][Board.length]);
+                    Stone[][] tempChain = MakeChain(x+1, y, new boolean[Board.length][Board.length], Stone.White, new Stone[Board.length][Board.length]);
                     if(!CheckChainForProperty(tempChain, Stone.Empty)){
                         blackscore += CountChainElements(tempChain);
                         ChangeChainTo(tempChain, Stone.Empty);
                     }
                 }
                 if((x-1 >=0) && (Board[x-1][y] == Stone.White)){
-                    Stone[][] tempChain = MakeChain(x-1, y, x-1, y, Stone.White, new Stone[Board.length][Board.length]);
+                    Stone[][] tempChain = MakeChain(x-1, y, new boolean[Board.length][Board.length], Stone.White, new Stone[Board.length][Board.length]);
                     if(!CheckChainForProperty(tempChain, Stone.Empty)){
                         blackscore += CountChainElements(tempChain);
                         ChangeChainTo(tempChain, Stone.Empty);
                     }
                 }
                 if((y+1 < Board.length) && (Board[x][y+1] == Stone.White)){
-                    Stone[][] tempChain = MakeChain(x, y+1, x, y+1, Stone.White, new Stone[Board.length][Board.length]);
+                    Stone[][] tempChain = MakeChain(x, y+1, new boolean[Board.length][Board.length], Stone.White, new Stone[Board.length][Board.length]);
                     if(!CheckChainForProperty(tempChain, Stone.Empty)){
                         blackscore += CountChainElements(tempChain);
                         ChangeChainTo(tempChain, Stone.Empty);
                     }
                 }
                 if((y-1 >= 0) && (Board[x][y-1] == Stone.White)){
-                    Stone[][] tempChain = MakeChain(x, y-1, x, y-1, Stone.White, new Stone[Board.length][Board.length]);
+                    Stone[][] tempChain = MakeChain(x, y-1, new boolean[Board.length][Board.length], Stone.White, new Stone[Board.length][Board.length]);
                     if(!CheckChainForProperty(tempChain, Stone.Empty)){
                         blackscore += CountChainElements(tempChain);
                         ChangeChainTo(tempChain, Stone.Empty);
                     }
                 }
-                if(!CheckChainForProperty(MakeChain(x, y, x, y, Stone.Black, new Stone[Board.length][Board.length]),Stone.Empty)){
+                if(!CheckChainForProperty(MakeChain(x, y, new boolean[Board.length][Board.length], Stone.Black, new Stone[Board.length][Board.length]),Stone.Empty)){
                     Board[x][y]=Stone.Empty;
                     return false;
                 }
@@ -156,34 +158,34 @@ public class Model {
             else{
                 Board[x][y]=Stone.White;
                 if((x+1 < Board.length) && (Board[x+1][y] == Stone.Black)){
-                    Stone[][] tempChain = MakeChain(x+1, y, x+1, y, Stone.Black, new Stone[Board.length][Board.length]);
+                    Stone[][] tempChain = MakeChain(x+1, y, new boolean[Board.length][Board.length], Stone.Black, new Stone[Board.length][Board.length]);
                     if(!CheckChainForProperty(tempChain, Stone.Empty)){
                         whitescore += CountChainElements(tempChain);
                         ChangeChainTo(tempChain, Stone.Empty);
                     }
                 }
                 if((x-1 >=0) && (Board[x-1][y] == Stone.Black)){
-                    Stone[][] tempChain = MakeChain(x-1, y, x-1, y, Stone.Black, new Stone[Board.length][Board.length]);
+                    Stone[][] tempChain = MakeChain(x-1, y, new boolean[Board.length][Board.length], Stone.Black, new Stone[Board.length][Board.length]);
                     if(!CheckChainForProperty(tempChain, Stone.Empty)){
                         whitescore += CountChainElements(tempChain);
                         ChangeChainTo(tempChain, Stone.Empty);
                     }
                 }
                 if((y+1 < Board.length) && (Board[x][y+1] == Stone.Black)){
-                    Stone[][] tempChain = MakeChain(x, y+1, x, y+1, Stone.Black, new Stone[Board.length][Board.length]);
+                    Stone[][] tempChain = MakeChain(x, y+1, new boolean[Board.length][Board.length], Stone.Black, new Stone[Board.length][Board.length]);
                     if(!CheckChainForProperty(tempChain, Stone.Empty)){
                         whitescore += CountChainElements(tempChain);
                         ChangeChainTo(tempChain, Stone.Empty);
                     }
                 }
                 if((y-1 >= 0) && (Board[x][y-1] == Stone.Black)){
-                    Stone[][] tempChain = MakeChain(x, y-1, x, y-1, Stone.Black, new Stone[Board.length][Board.length]);
+                    Stone[][] tempChain = MakeChain(x, y-1, new boolean[Board.length][Board.length], Stone.Black, new Stone[Board.length][Board.length]);
                     if(!CheckChainForProperty(tempChain, Stone.Empty)){
                         whitescore += CountChainElements(tempChain);
                         ChangeChainTo(tempChain, Stone.Empty);
                     }
                 }
-                if(!CheckChainForProperty(MakeChain(x, y, x, y, Stone.White, new Stone[Board.length][Board.length]),Stone.Empty)){
+                if(!CheckChainForProperty(MakeChain(x, y, new boolean[Board.length][Board.length], Stone.White, new Stone[Board.length][Board.length]),Stone.Empty)){
                     Board[x][y]=Stone.Empty;
                     return false;
                 }
@@ -207,30 +209,30 @@ public class Model {
     public void SetDeadAndTerritories(int x, int y, color player){
         if(player == color.Black){
             if(Board[x][y] == Stone.White){
-                ChangeChainTo(MakeChain(x, y, x, y, Stone.White, new Stone[Board.length][Board.length]),Stone.WhiteDead);
+                ChangeChainTo(MakeChain(x, y, new boolean[Board.length][Board.length], Stone.White, new Stone[Board.length][Board.length]),Stone.WhiteDead);
             }
             else if(Board[x][y] == Stone.WhiteDead){
-                ChangeChainTo(MakeChain(x, y, x, y, Stone.WhiteDead, new Stone[Board.length][Board.length]),Stone.White);
+                ChangeChainTo(MakeChain(x, y, new boolean[Board.length][Board.length], Stone.WhiteDead, new Stone[Board.length][Board.length]),Stone.White);
             }
             else if(Board[x][y] == Stone.Empty){
-                ChangeChainTo(MakeChain(x, y, x, y, Stone.Empty, new Stone[Board.length][Board.length]),Stone.BlackTerritory);
+                ChangeChainTo(MakeChain(x, y, new boolean[Board.length][Board.length], Stone.Empty, new Stone[Board.length][Board.length]),Stone.BlackTerritory);
             }
             else if(Board[x][y] == Stone.BlackTerritory){
-                ChangeChainTo(MakeChain(x, y, x, y, Stone.BlackTerritory, new Stone[Board.length][Board.length]),Stone.Empty);
+                ChangeChainTo(MakeChain(x, y, new boolean[Board.length][Board.length], Stone.BlackTerritory, new Stone[Board.length][Board.length]),Stone.Empty);
             }
         }
         else if(player == color.White){
             if(Board[x][y] == Stone.Black){
-                ChangeChainTo(MakeChain(x, y, x, y, Stone.Black, new Stone[Board.length][Board.length]),Stone.BlackDead);
+                ChangeChainTo(MakeChain(x, y, new boolean[Board.length][Board.length], Stone.Black, new Stone[Board.length][Board.length]),Stone.BlackDead);
             }
             else if(Board[x][y] == Stone.BlackDead){
-                ChangeChainTo(MakeChain(x, y, x, y, Stone.BlackDead, new Stone[Board.length][Board.length]),Stone.Black);
+                ChangeChainTo(MakeChain(x, y, new boolean[Board.length][Board.length], Stone.BlackDead, new Stone[Board.length][Board.length]),Stone.Black);
             }
             else if(Board[x][y] == Stone.Empty){
-                ChangeChainTo(MakeChain(x, y, x, y, Stone.Empty, new Stone[Board.length][Board.length]),Stone.WhiteTerritory);
+                ChangeChainTo(MakeChain(x, y, new boolean[Board.length][Board.length], Stone.Empty, new Stone[Board.length][Board.length]),Stone.WhiteTerritory);
             }
             else if(Board[x][y] == Stone.WhiteTerritory){
-                ChangeChainTo(MakeChain(x, y, x, y, Stone.WhiteTerritory, new Stone[Board.length][Board.length]),Stone.Empty);
+                ChangeChainTo(MakeChain(x, y, new boolean[Board.length][Board.length], Stone.WhiteTerritory, new Stone[Board.length][Board.length]),Stone.Empty);
             }
         }
     }
@@ -259,7 +261,7 @@ public class Model {
         for(int i = 0; i < Board.length; i++) {
             for (int j = 0; j < Board.length; j++) {
                 if (Board[i][j] == Stone.Empty) {
-                    Stone[][] tempChain = MakeChain(i, j, i, j, Stone.Empty, new Stone[Board.length][Board.length]);
+                    Stone[][] tempChain = MakeChain(i, j, new boolean[Board.length][Board.length], Stone.Empty, new Stone[Board.length][Board.length]);
                     if(CheckChainForProperty(tempChain, Stone.Black) && !CheckChainForProperty(tempChain, Stone.White)){
                         ChangeChainTo(tempChain, Stone.BlackTerritory);
                     }
@@ -294,7 +296,9 @@ public class Model {
     /**
      * Funkcja zwracająca informacje o rozgrywce
      */
-    public Stone[][] GetBoard(){return Board;}
+    public Stone[][] GetBoard(){
+        return Board;
+    }
     //private color GetTurn(){return Turn;}
     //private State GetState(){return state;}
 }

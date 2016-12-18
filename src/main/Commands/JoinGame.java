@@ -20,6 +20,7 @@ public class JoinGame implements Command, Serializable {
         while(true) {
             for (Game game : Server.ListOfGames) {
                 if (game.freespace) {
+                    game.freespace=false;
                     game.player2 = player;
                     game.player2.CurrentGame=game;
                     game.player2.opponent=game.player1;

@@ -1,5 +1,6 @@
 package main;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +19,7 @@ public class Server {
                 new Thread(newPlayer).start();
             }
         }
-        catch (Exception e){System.out.println("blad w serverze");}
+        catch (IOException e){System.out.println("blad w serverze");}
     }
 
 }

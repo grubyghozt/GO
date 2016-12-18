@@ -27,7 +27,7 @@ public class HumanPlayer extends Player implements Runnable{
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
         }
-        catch(Exception e){System.out.println("blad w tworzeniu instancji gracza na serverze");}
+        catch(IOException e){System.out.println("blad w tworzeniu instancji gracza na serverze");}
     }
     /**
      * Funkcja wykonująca komendę
@@ -41,9 +41,10 @@ public class HumanPlayer extends Player implements Runnable{
      */
     public void update(Serializable object) {
         try {
+            out.reset();
             out.writeObject(object);
         }
-        catch(Exception e){System.out.println("blad w przesylaniu wyniku klientowi");}
+        catch(IOException e ){System.out.println("blad w przesylaniu wyniku klientowi");}
     }
     @Override
     public void run(){
@@ -54,8 +55,8 @@ public class HumanPlayer extends Player implements Runnable{
                 //CurrentGame.player1.update(CurrentGame.player1.color);
                 //CurrentGame.player2.update(CurrentGame.player2.color);
             }
-            catch(ClassNotFoundException e){System.out.println("blad w watku uruchamiajacym komendy");}
-            catch(IOException e){                System.out.print("aaaa");}
+            catch(ClassNotFoundException e){System.out.println("blad w watku uruchamiajacym komendy - Class");}
+            catch(IOException e){System.out.print("blad w watku uruchamiajacym komendy - IO");}
             }
     }
 }

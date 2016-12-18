@@ -26,9 +26,7 @@ public class NormalGameState implements State, Serializable {
         for(int i = 0; i < player.CurrentGame.LocalModel.GetBoard().length; i++){
             for(int j = 0; j < player.CurrentGame.LocalModel.GetBoard().length; j++){
                 MakeMove temp = new MakeMove(i, j);
-                System.out.print("44");
                 temp.Execute(player);
-                System.out.print("55");
                 if(temp.valid){
                     return;
                 }

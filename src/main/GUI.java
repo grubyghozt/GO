@@ -177,6 +177,7 @@ public class GUI extends JFrame{
                 if (board[i][j] == Stone.White) {
                     ImageIcon stone = new ImageIcon("Textures/White.png");
                     JLabel icon = new JLabel();
+                    icon.setSize(19,19);
                     icon.setIcon(stone);
                     Board.add(icon);
                     icon.setLocation(i*20, j*20);
@@ -184,6 +185,7 @@ public class GUI extends JFrame{
                 else if (board[i][j] == Stone.WhiteTerritory) {
                     ImageIcon stone = new ImageIcon("Textures/WhiteTerritory.png");
                     JLabel icon = new JLabel();
+                    icon.setSize(19,19);
                     icon.setIcon(stone);
                     Board.add(icon);
                     icon.setLocation(i*20, j*20);
@@ -191,6 +193,7 @@ public class GUI extends JFrame{
                 else if (board[i][j] == Stone.WhiteDead) {
                     ImageIcon stone = new ImageIcon("Textures/WhiteDead.png");
                     JLabel icon = new JLabel();
+                    icon.setSize(19,19);
                     icon.setIcon(stone);
                     Board.add(icon);
                     icon.setLocation(i*20, j*20);
@@ -198,6 +201,7 @@ public class GUI extends JFrame{
                 else if (board[i][j] == Stone.Black) {
                     ImageIcon stone = new ImageIcon("Textures/Black.png");
                     JLabel icon = new JLabel();
+                    icon.setSize(19,19);
                     icon.setIcon(stone);
                     Board.add(icon);
                     icon.setLocation(i*20, j*20);
@@ -205,6 +209,7 @@ public class GUI extends JFrame{
                 else if (board[i][j] == Stone.BlackDead) {
                     ImageIcon stone = new ImageIcon("Textures/BlackDead.png");
                     JLabel icon = new JLabel();
+                    icon.setSize(19,19);
                     icon.setIcon(stone);
                     Board.add(icon);
                     icon.setLocation(i*20, j*20);
@@ -212,6 +217,7 @@ public class GUI extends JFrame{
                 else if (board[i][j] == Stone.BlackTerritory) {
                     ImageIcon stone = new ImageIcon("Textures/BlackTerritory.png");
                     JLabel icon = new JLabel();
+                    icon.setSize(19,19);
                     icon.setIcon(stone);
                     Board.add(icon);
                     icon.setLocation(i*20, j*20);

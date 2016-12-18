@@ -3,6 +3,7 @@ package main.Commands;
 import main.Player;
 import main.States.NormalGameState;
 import main.States.WaitingForOpponentState;
+import main.Stone;
 
 import java.io.Serializable;
 
@@ -21,13 +22,9 @@ public class MakeMove implements Command, Serializable {
     public void Execute(Player player) {
         if(player.CurrentGame.LocalModel.MakeValidMove(x, y, player.color)){
             player.update(player.CurrentGame.LocalModel.GetBoard());
-            System.out.print("111");
             player.opponent.update(player.CurrentGame.LocalModel.GetBoard());
-            System.out.print("111");
             player.update(new WaitingForOpponentState());
-            System.out.print("222");
             player.opponent.update(new NormalGameState());
-            System.out.print("222");
             valid = true;
         }
     }

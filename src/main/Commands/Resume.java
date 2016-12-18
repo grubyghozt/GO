@@ -14,6 +14,8 @@ public class Resume implements Command, Serializable {
     public void Execute(Player player) {
         player.CurrentGame.LocalModel.DeadAndTerritories = 0;
         player.CurrentGame.LocalModel.ClearBoard();
+        player.update(player.CurrentGame.LocalModel.GetBoard());
+        player.opponent.update(player.CurrentGame.LocalModel.GetBoard());
         player.update(new WaitingForOpponentState());
         player.opponent.update(new NormalGameState());
     }

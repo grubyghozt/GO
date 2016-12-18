@@ -21,7 +21,6 @@ import java.net.Socket;
  */
 public class Client {
     private GUI MyGui;
-    //private color player;
     private static int PORT = 8901;
     private Socket socket;
     ObjectInputStream in;

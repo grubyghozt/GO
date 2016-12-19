@@ -1,4 +1,4 @@
-package main;
+package main.ServerSide;
 
 import main.States.State;
 
@@ -8,8 +8,6 @@ import java.io.Serializable;
  * Klasa BOT
  */
 public class BOT extends Player {
-    //private State state;
-    //private Stone[][] Board;
     /**
      * Funkcja wykonująca akcje bota
      */

@@ -1,10 +1,8 @@
 package main.Commands;
 
-import main.Player;
+import main.ServerSide.Player;
 import main.States.NormalGameState;
 import main.States.WaitingForOpponentState;
-import main.Stone;
-
 import java.io.Serializable;
 
 /**

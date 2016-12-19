@@ -1,6 +1,6 @@
 package main.Commands;
 
-import main.Player;
+import main.ServerSide.Player;
 
 /**
  * Interface do komend wykonywanych na modelu

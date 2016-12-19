@@ -1,7 +1,7 @@
 package main.States;
 
-import main.GUI;
-import main.Player;
+import main.ClientSide.GUI;
+import main.ServerSide.Player;
 
 /**
  * Interface do stanów opisujących wygląd GUI i zachowania Bota

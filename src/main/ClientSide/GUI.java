@@ -1,11 +1,10 @@
-package main;
+package main.ClientSide;
 
 import main.States.State;
+import main.Stone;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-
 /**
  * Interfejs użytkownika
  */
@@ -54,14 +53,6 @@ public class GUI extends JFrame{
         add(Board);
         Board.setLocation(0,0);
         Board.setVisible(false);
-
-        //ImageIcon background = new ImageIcon("Textures/Board19x19.png");
-        //JLabel icon = new JLabel("aasdasdas");
-        //icon.setSize(400,400);
-        //icon.setIcon(background);
-        //add(icon);
-        //icon.setVisible(true);
-        //icon.setLocation(400,400);
 
         NewGame = new Button("New Game");
         NewGame.setSize(400,400);

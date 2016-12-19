@@ -1,8 +1,8 @@
 package main.Commands;
 
-import main.Game;
-import main.Player;
-import main.Server;
+import main.ServerSide.Game;
+import main.ServerSide.Player;
+import main.ServerSide.Server;
 import main.States.ChooseBoardSizeState;
 
 import java.io.Serializable;

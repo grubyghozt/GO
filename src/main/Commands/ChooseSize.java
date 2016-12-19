@@ -1,7 +1,7 @@
 package main.Commands;
 
-import main.Model;
-import main.Player;
+import main.ServerSide.Model;
+import main.ServerSide.Player;
 import main.States.ChooseOpponentState;
 
 import java.io.Serializable;

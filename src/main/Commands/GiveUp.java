@@ -1,6 +1,6 @@
 package main.Commands;
 
-import main.Player;
+import main.ServerSide.Player;
 import main.States.ResultState;
 
 import java.io.Serializable;

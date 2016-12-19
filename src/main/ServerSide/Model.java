@@ -1,6 +1,7 @@
-package main;
+package main.ServerSide;
 
-import main.States.State;
+import main.Stone;
+import main.color;
 
 import java.util.Arrays;
 
@@ -8,7 +9,7 @@ import java.util.Arrays;
  * Klasa odpowiedzialna za logike
  */
 public class Model {
-    private Stone[][] Board;
+    public Stone[][] Board;
     private int Blackx=-1;
     private int Blacky=-1;
     private int Whitex=-1;
@@ -17,17 +18,10 @@ public class Model {
     public double blackscore = 0;
     public int pass = 0;
     public int DeadAndTerritories = 0;
-    //private Stone[][] BlackPreviousBoard;
-    //private Stone[][] WhitePreviousBoard;
-
-    //private color Turn;
-    //private State state;
     /**
      * konstruktor
      */
     public Model(int size){
-        //BlackPreviousBoard = new Stone[size][size];
-        //WhitePreviousBoard = new Stone[size][size];
         Board = new Stone[size][size];
         for (Stone[] row: Board) {
             Arrays.fill(row, Stone.Empty);
@@ -36,11 +30,10 @@ public class Model {
     /**
      * funkcja szukająca łańcuchów
      */
-    private Stone[][] MakeChain(int x, int y,boolean[][] visited, Stone stone, Stone[][] chain){
+    public Stone[][] MakeChain(int x, int y,boolean[][] visited, Stone stone, Stone[][] chain){
         visited[x][y]=true;
         if(Board[x][y]==stone) {
             chain[x][y]=stone;
-            //System.out.println(visited[x+1][y]);
             if((x+1 < Board.length) && (!visited[x+1][y])) {
                 MakeChain(x + 1, y, visited, stone, chain);
             }
@@ -60,7 +53,7 @@ public class Model {
      * funkcja sprawdzajaca czy łańcuch ma dostęp do pola o danym parametrze
      * (sprawdza czy łańcuch ma oddech lub potencjalne terytorium jest otoczone przez tylko 1 kolor kamieni)
      */
-    private boolean CheckChainForProperty(Stone[][] Chain, Stone property){
+    public boolean CheckChainForProperty(Stone[][] Chain, Stone property){
         for(int i = 0; i < Board.length; i++){
             for(int j = 0; j < Board.length; j++){
                 if(Chain[i][j]!=null){
@@ -79,7 +72,7 @@ public class Model {
     /**
      *Funkcja, która zamienia łańcuch jednego typu na łańcuch innego typu (przydatne przy kasowaniu łancuchów, zaznaczaniu martwych kamieni itp.)
      */
-    private void ChangeChainTo(Stone[][] Chain, Stone ChangeTo){
+    public void ChangeChainTo(Stone[][] Chain, Stone ChangeTo){
         for(int i = 0; i < Board.length; i++) {
             for (int j = 0; j < Board.length; j++) {
                 if (Chain[i][j] != null) {
@@ -91,7 +84,7 @@ public class Model {
     /**
      * Funkcja licząca z lu elemntów składa się łańcuch (liczenie jeńców, terytoriów)
      */
-    private int CountChainElements(Stone[][] Chain){
+    public int CountChainElements(Stone[][] Chain){
         int score=0;
         for(int i = 0; i < Board.length; i++) {
             for (int j = 0; j < Board.length; j++) {
@@ -299,6 +292,4 @@ public class Model {
     public Stone[][] GetBoard(){
         return Board;
     }
-    //private color GetTurn(){return Turn;}
-    //private State GetState(){return state;}
 }

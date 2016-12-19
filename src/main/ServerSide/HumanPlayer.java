@@ -1,7 +1,6 @@
-package main;
+package main.ServerSide;
 
 import main.Commands.Command;
-
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -12,10 +11,7 @@ import java.net.Socket;
  * klasa reprezentująca gracza
  */
 public class HumanPlayer extends Player implements Runnable{
-    //public color color;
     private Socket socket;
-    //public Game CurrentGame;
-    //public Player opponent;
     ObjectInputStream in;
     ObjectOutputStream out;
     /**
@@ -53,8 +49,6 @@ public class HumanPlayer extends Player implements Runnable{
                 while (true) {
                     Command newCommand = (Command) in.readObject();
                     ExecuteCommand(newCommand);
-                    //CurrentGame.player1.update(CurrentGame.player1.color);
-                    //CurrentGame.player2.update(CurrentGame.player2.color);
                 }
             }
             catch(ClassNotFoundException e){System.out.println("blad w watku uruchamiajacym komendy - Class");}

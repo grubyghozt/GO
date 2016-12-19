@@ -1,7 +1,7 @@
 package main.Commands;
 
-import main.BOT;
-import main.Player;
+import main.ServerSide.BOT;
+import main.ServerSide.Player;
 import main.States.NormalGameState;
 import main.States.OpponentFoundState;
 import main.States.WaitingForOpponentState;

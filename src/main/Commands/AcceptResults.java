@@ -1,7 +1,7 @@
 package main.Commands;
 
-import main.Player;
-import main.Server;
+import main.ServerSide.Player;
+import main.ServerSide.Server;
 import main.States.MakeOrJoinGameState;
 
 import java.io.Serializable;
@@ -14,6 +14,5 @@ public class AcceptResults implements Command, Serializable {
     public void Execute(Player player) {
         Server.ListOfGames.remove(player.CurrentGame);
         player.update(new MakeOrJoinGameState());
-        //player.opponent.update(new MakeOrJoinGameState());
     }
 }

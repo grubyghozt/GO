@@ -2,8 +2,8 @@ package main.States;
 
 import main.Commands.MakeMove;
 import main.Commands.Pass;
-import main.GUI;
-import main.Player;
+import main.ClientSide.GUI;
+import main.ServerSide.Player;
 
 import java.io.Serializable;
 

@@ -1,8 +1,8 @@
 package main.States;
 
 import main.Commands.ConfirmYourChoice;
-import main.GUI;
-import main.Player;
+import main.ClientSide.GUI;
+import main.ServerSide.Player;
 
 import java.io.Serializable;
 

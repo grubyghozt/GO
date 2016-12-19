@@ -1,6 +1,9 @@
 package main.Commands;
 
-import main.*;
+import main.ServerSide.Game;
+import main.ServerSide.Player;
+import main.ServerSide.Server;
+import main.color;
 import main.States.NormalGameState;
 import main.States.OpponentFoundState;
 import main.States.WaitingForOpponentState;

@@ -1,12 +1,12 @@
-package main;
+package main.ClientSide;
 
 import main.Commands.*;
 import main.States.ChooseDeadStonesAndTerritoriesState;
 import main.States.MakeOrJoinGameState;
 import main.States.NormalGameState;
 import main.States.State;
+import main.Stone;
 
-import javax.imageio.IIOException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
